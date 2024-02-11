@@ -15,4 +15,4 @@
 **ID:** a100066
 
 **Fotografia:**
-![Fotografia do aluno](./)
+![Fotografia do aluno](./foto.jpg)
