@@ -9,8 +9,9 @@ html = '''
     <meta charset="UTF-8">
     <style>
         img {
-            max-width: 60%; /* Garante que a imagem não ultrapasse a largura do seu contêiner */
+            max-width: 40%; /* Garante que a imagem não ultrapasse a largura do seu contêiner */
             height: auto; /* Mantém a proporção da imagem */
+            padding: 5px;
         }
     </style>
 </head>
@@ -49,18 +50,7 @@ def percorrer_pastaXML(directory):
                 imagens.append(imagem_path)
             
             if rua_nome:
-                print(rua_nome)
                 html_rua += f"<h1>{rua_nome}</h1>"
-                
-            if rua_id:
-                html_rua += "<div>"
-                print(rua_id)
-                for imagem in os.listdir(f"MapaRuas-materialBase/atual"):
-                    if imagem.startswith(f"{rua_id}"):
-                        html_rua += f"<img src='../MapaRuas-materialBase/atual/{imagem}' alt='Imagem'>"
-                #html_rua += f"<img src='{imagem}' alt='Imagem'>"
-                html_rua += "</div>"
-                
             
             html_rua += "<div>"
             html_rua += f"<h2>Informações sobre a rua:</h2>"
@@ -68,7 +58,6 @@ def percorrer_pastaXML(directory):
             for para in root.iter('para'):
                 descricao.append(ET.tostring(para, encoding='unicode'))
                 html_rua += f"{ET.tostring(para, encoding='unicode')}"
-                #print(f"Informações desta rua\n: {ET.tostring(para, encoding='unicode')}")
             
             html_rua += "<br>"
             html_rua += "</div>"
@@ -97,12 +86,20 @@ def percorrer_pastaXML(directory):
             html_rua += "</div>"
             html_rua += "<br>"
               
+                
+            if rua_id:
+                html_rua += "<div class='image-container'>"
+                for imagem in os.listdir(f"MapaRuas-materialBase/atual"):
+                    if imagem.startswith(f"{rua_id}"):
+                        html_rua += f"<img src='../MapaRuas-materialBase/atual/{imagem}' alt='Imagem'>"
+                #html_rua += f"<img src='{imagem}' alt='Imagem'>"
+                html_rua += "</div>"  
+              
             if rua_nome:
                 html_rua += "<div>"
                 
                 for imagem in imagens:
                     html_rua += f"<img src='{imagem}' alt='Imagem'>"
-                    #print(imagem)
                 html_rua += "</div>"    
                 html_rua += "<br>"
                 html_rua += "<div>"
@@ -132,10 +129,7 @@ ruas = percorrer_pastaXML(pasta_xmlInfo)
 
 html += "<ul>"
 
-#print(f"Número de ruas encontrado: {len(ruas)}")
 for rua in ruas:
-    #print(rua)
-    
     html += f"<li><a href='html/{rua}.html'>{rua}</a></li>"
     
 html += "</ul>"
