@@ -21,13 +21,15 @@ html = '''
 template = html
 
 def percorrer_pastaXML(directory):
-    ruas = set() # usei set para não haver ruas duplicadas
+    # sacar numero da rua, e ir a Mapa.../atual e meter a correspondente
     
+    ruas = set() # usei set para não haver ruas duplicadas
     for filename in os.listdir(directory):
         if filename.endswith('.xml'): 
             tree = ET.parse(os.path.join(directory, filename))
             root = tree.getroot()
             
+            rua_id = None
             rua_nome = None
             imagens = []
             descricao = [] # Lista para armazenar as descrições
@@ -37,7 +39,9 @@ def percorrer_pastaXML(directory):
             
             for rua in root.iter('nome'):
                 rua_nome = rua.text
-            
+            for rua in root.iter('número'):
+                rua_id = rua.text
+                break
                 
             for figura in root.iter('figura'):
                 imagem_path = figura.find('imagem').attrib['path']
@@ -45,15 +49,26 @@ def percorrer_pastaXML(directory):
                 imagens.append(imagem_path)
             
             if rua_nome:
+                print(rua_nome)
                 html_rua += f"<h1>{rua_nome}</h1>"
                 
+            if rua_id:
+                html_rua += "<div>"
+                print(rua_id)
+                for imagem in os.listdir(f"MapaRuas-materialBase/atual"):
+                    if imagem.startswith(f"{rua_id}"):
+                        html_rua += f"<img src='../MapaRuas-materialBase/atual/{imagem}' alt='Imagem'>"
+                #html_rua += f"<img src='{imagem}' alt='Imagem'>"
+                html_rua += "</div>"
+                
+            
             html_rua += "<div>"
             html_rua += f"<h2>Informações sobre a rua:</h2>"
             
             for para in root.iter('para'):
                 descricao.append(ET.tostring(para, encoding='unicode'))
                 html_rua += f"{ET.tostring(para, encoding='unicode')}"
-                print(f"Informações desta rua\n: {ET.tostring(para, encoding='unicode')}")
+                #print(f"Informações desta rua\n: {ET.tostring(para, encoding='unicode')}")
             
             html_rua += "<br>"
             html_rua += "</div>"
@@ -87,7 +102,7 @@ def percorrer_pastaXML(directory):
                 
                 for imagem in imagens:
                     html_rua += f"<img src='{imagem}' alt='Imagem'>"
-                    print(imagem)
+                    #print(imagem)
                 html_rua += "</div>"    
                 html_rua += "<br>"
                 html_rua += "<div>"
@@ -117,9 +132,9 @@ ruas = percorrer_pastaXML(pasta_xmlInfo)
 
 html += "<ul>"
 
-print(f"Número de ruas encontrado: {len(ruas)}")
+#print(f"Número de ruas encontrado: {len(ruas)}")
 for rua in ruas:
-    print(rua)
+    #print(rua)
     
     html += f"<li><a href='html/{rua}.html'>{rua}</a></li>"
     
