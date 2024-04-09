@@ -1,0 +1,58 @@
+extends layout
+
+block content 
+    .w3-card-4 
+        header.w3-container.w3-teal
+            h1 #{pessoa.nome} 
+        .w3-container 
+            ul.w3-ul.ww3-card-4 
+                li 
+                    strong Nome:
+                    | #{pessoa.nome} 
+                li 
+                    strong BI/CC:
+                    | #{pessoa._id} 
+                li 
+                    strong Idade:
+                    | #{pessoa.idade} 
+                li 
+                    strong Sexo:
+                    | #{pessoa.sexo} 
+                li 
+                    strong Morada:
+                    | Cidade: #{pessoa.morada.cidade}, Distrito: #{pessoa.morada.distrito}
+                li 
+                    strong Profissão:
+                    | #{pessoa.profissao} 
+                li 
+                    strong Partido Político:
+                    | Abreviação: #{pessoa.partido_politico.party_abbr}, Nome: #{pessoa.partido_politico.party_name} 
+                li 
+                    strong Religião:
+                    | #{pessoa.religiao} 
+                li 
+                    strong Desportos:
+                    each desporto in pessoa.desportos 
+                    | #{desporto},
+                li 
+                    strong Animais:
+                    each animal in pessoa.animais 
+                    | #{animal}, 
+                li 
+                    strong Marca de Carro:
+                    | #{pessoa.marca_carro} 
+                li 
+                    strong Figura Pública em Portugal:
+                    each figura in pessoa.figura_public_pt 
+                    | #{figura},
+                li 
+                    strong Destinos Favoritos:
+                    each destino in pessoa.destinos_favoritos 
+                    | #{destino}, 
+                li 
+                    strong Atributos:
+                    ul 
+                        each atribute, value in pessoa.attributos 
+                            li 
+                                strong  attribute: 
+                                | #{value} 
