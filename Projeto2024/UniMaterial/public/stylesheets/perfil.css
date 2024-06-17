@@ -1,0 +1,109 @@
+/* Reset básico e estilos gerais */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef; /* Cor de fundo geral cinza claro */
+    color: #333;
+    margin: 0;
+    
+}
+
+.header {
+    text-align: center; /* Centraliza o texto no cabeçalho */
+    margin-bottom: 30px; /* Espaço abaixo do cabeçalho */
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #000000; /* Cor azul para o nome */
+    font-weight: bold;
+}
+
+.header p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Estilos gerais para as seções de informação */
+.info-section {
+    background-color: #ffffff; /* Fundo branco para as caixas de informação */
+    border-radius: 10px; /* Cantos arredondados */
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1); /* Sombra leve para profundidade */
+}
+
+/* Estilização específica para cada seção */
+.contact-info, .academic-info, .role-info, .record-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Títulos e texto dentro das seções */
+.info-section h5 {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.info-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Botão de edição estilizado */
+.edit-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .table th, 
+  .table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #1e9be5;
+    color: white;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  
+  .author-link {
+    color: inherit; 
+    text-decoration: none; 
+    cursor: pointer; 
+  }
+  
+  .author-link:hover {
+    text-decoration: underline; 
+  }
+  
